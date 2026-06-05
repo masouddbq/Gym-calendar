@@ -4,20 +4,46 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Bitcount;
+    src: url(./fonts/Outfit-VariableFont_wght.ttf);
+}
 body{
+    font-family: 'Bitcount';
     display: grid;
     place-items: center;
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)), url(./images/—Pngtree—orange\ and\ black\ cosmic\ nebula_16572384.jpg) center/cover no-repeat;
     height: 100vh;
     margin: 0;
 }
 
+li{
+    list-style-type: none;
+}
+
+.base{
+    padding:80px 20px;
+    border: 1px groove #424242;
+    border-radius: 50px;
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(./images/—Pngtree—orange\ and\ black\ cosmic\ nebula_16572384.jpg) center/cover no-repeat
+   
+}
+
+.container{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
 .calendar{
-    background: linear-gradient(90deg,rgb(0, 0, 0) , rgb(54, 54, 54));
+    background: linear-gradient(90deg,rgba(0, 0, 0, 0.66) , #363636a2);
     padding: 15px;
     box-shadow: 0 0 10px 5px rgba(60, 51, 0, 0.438);
     corner-shape : squircle;
     border-radius: 50px;
-    width: 70vw;
+    width: calc(60vw - 10px);
     height: 60vh;
 }
 
@@ -77,7 +103,51 @@ body{
     color: #856216;
 }
 
+.tasks{
+    width:calc(30vw - 20px);
+    height: 60vh;
+    background: linear-gradient(90deg , #3636367e , rgba(30, 30, 30, 0.824));
+    box-shadow: 0 0 10px 5px rgba(60, 51, 0, 0.438);
+    display: flex;
+    margin:0 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 100px;
+    corner-shape:squircle ;
+}
 
+.tsk-header{
+    margin-top: 20px;
+    color: #ffae00;
+}
+
+.tsk-list{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(90deg , #bd7e0067,#ffae006e);
+    box-shadow:0 0 5px 1px rgb(247, 189, 0);
+    border-radius: 100px;
+    corner-shape:squircle;
+    height: 50vh;
+    width: 22vw;
+    margin:20px 0;
+    transition: 0.5s ease;
+}
+.tsk-list:hover{
+    margin-top: 30px;
+}
+.tsk-item{
+    color: white;
+    cursor: pointer;
+    background-color: rgba(23, 23, 23, 0.329);
+    width: 200px;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
 
 
 
