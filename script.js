@@ -25,6 +25,12 @@ document.addEventListener('DOMContentLoaded' , () => {
             dayDiv.classList.add('fade')
             daysContainer.appendChild(dayDiv)
         }
+
+
+        const monthLastDay =  new Date(year , month + 1 , 0).getDay()
+        console.log(monthLastDay);
+        
+        
         
         
         
@@ -43,6 +49,17 @@ document.addEventListener('DOMContentLoaded' , () => {
 
             daysContainer.appendChild(dayDiv)
         }
+
+
+        const nextMonthFirstDay = 7 - new Date(year , month + 1 , 1).getDay() // 3
+
+        for (let i = 1; i <= nextMonthFirstDay; i++) {
+            const dayDiv = document.createElement('div')
+            dayDiv.textContent = i
+            dayDiv.classList.add('fade')
+            daysContainer.appendChild(dayDiv)
+        }
+        
 
     }
 
