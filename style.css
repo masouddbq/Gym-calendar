@@ -191,8 +191,8 @@ i{
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(90deg , #bd7e0067,#ffae006e);
-    box-shadow:0 0 5px 1px rgb(247, 189, 0);
+    background: linear-gradient(90deg , #ff8c0078,#ffae00aa);
+    box-shadow:0 0 5px 1px #ff8c00;
     border-radius: 100px;
     corner-shape:squircle;
     height: 50vh;
@@ -203,6 +203,17 @@ i{
 .tsk-list:hover{
     margin-top: 30px;
 }
+
+.tsk-list img{
+    width: 40px;
+    height: 40px;
+    margin: 0 20px;
+    color: white;
+}
+
+#shoulder{
+    mix-blend-mode: multiply;
+}
 .tsk-item{
     color: white;
     cursor: pointer;
@@ -211,6 +222,10 @@ i{
     padding: 10px;
     border-radius: 20px;
     text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 600;
 }
 
 
