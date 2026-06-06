@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderCalendar(date) {
     daysContainer.innerHTML = "";
 
+
     const year = date.getFullYear();
     const month = date.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
@@ -33,8 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevMonthLastDay = new Date(year, month, 0).getDate();
     for (let i = firstDay; i > 0; i--) {
       const dayDiv = document.createElement("div");
+      dayDiv.addEventListener('dragover' , () => {
+        console.log('dragover');
+      })
       dayDiv.textContent = prevMonthLastDay - i + 1;
-      dayDiv.classList.add("fade");
+      dayDiv.classList.add("fade", "day-div");
       daysContainer.appendChild(dayDiv);
     }
 
@@ -45,14 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 1; i <= lastDay; i++) {
       const dayDiv = document.createElement("div");
+      dayDiv.addEventListener('dragover' , () => {
+        console.log('dragover');
+      })
       dayDiv.textContent = i;
+      dayDiv.classList.add("day-div")
 
       if (
         i === today.getDate() &&
         month === today.getMonth() &&
         year === today.getFullYear()
       ) {
-        dayDiv.classList.add("today");
+        dayDiv.classList.add("today", "day-div");
       }
 
       daysContainer.appendChild(dayDiv);
@@ -62,8 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 1; i <= nextMonthFirstDay; i++) {
       const dayDiv = document.createElement("div");
+      dayDiv.addEventListener('dragover' , () => {
+        console.log('dragover');
+      })
       dayDiv.textContent = i;
-      dayDiv.classList.add("fade");
+      dayDiv.classList.add("fade", "day-div");
       daysContainer.appendChild(dayDiv);
     }
   }
@@ -81,4 +92,30 @@ document.addEventListener("DOMContentLoaded", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar(currentDate);
   });
+
+
+
+ 
+  const dayDivs = document.querySelectorAll('.day-div')
+  dayDivs.forEach((dayDiv) => {
+    dayDiv.addEventListener('dragover' , (e) => {
+      e.preventDefault();
+      dayDiv.style.backgroundColor = 'red';
+      dayDiv.style.color = 'white';
+      e.dataTransfer.dropEffect = 'move';
+
+      dayDiv.addEventListener('dragleave' , () => {
+        dayDiv.style.backgroundColor = '';
+        dayDiv.style.color = '';
+        dayDiv.style.transition = '0.3s ease' ;
+      })
+
+      dayDiv.addEventListener('drop' ,() => {
+        dayDiv.style.backgroundColor = '';
+        dayDiv.style.color = '';
+      })
+    })
+  })
 });
+
+

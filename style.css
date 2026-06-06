@@ -12,7 +12,7 @@ body{
     font-family: 'Bitcount';
     display: grid;
     place-items: center;
-    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)), url(./images/—Pngtree—orange\ and\ black\ cosmic\ nebula_16572384.jpg) center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)), url(./images/—Pngtree—close-up\ of\ a\ pair\ heavy_16432146.png) center/cover no-repeat;
     height: 100vh;
     margin: 0;
 }
@@ -36,7 +36,7 @@ i{
 
     background:
         linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url("./images/—Pngtree—orange and black cosmic nebula_16572384.jpg")
+        url("./images/—Pngtree—close-up\ of\ a\ pair\ heavy_16432146.png")
         center/cover no-repeat;
 }
 
@@ -216,7 +216,8 @@ i{
 }
 .tsk-item{
     color: white;
-    cursor: pointer;
+    cursor: grab;
+    user-select: none;
     background-color: rgba(23, 23, 23, 0.329);
     width: 200px;
     padding: 10px;
