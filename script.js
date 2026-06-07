@@ -79,18 +79,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const dayDivs = document.querySelectorAll(".day-div");
     const droppedCard = document.querySelector(".dropped-card");
-    const workoutCard = document.querySelector('.workout-card')
-    const tasks = document.querySelectorAll('.tsk-item')
+    const workoutCard = document.querySelector(".workout-card");
+    const tasks = document.querySelectorAll(".tsk-item");
 
-    
+    const workouts = [
+      {
+        id: 'leg',
+        title: "Leg Day",
+        exerecises: [
+          "Barbell Squat",
+          "Romanian Deadlift",
+          "Leg Press",
+          "Walking Lunges",
+          "Leg Extension",
+        ],
+      },
+      {
+        id: 'chest',
+        title: "Chest Day",
+        exerecises: [
+          "Barbell Squat",
+          "Romanian Deadlift",
+          "Leg Press",
+          "Walking Lunges",
+          "Leg Extension",
+        ],
+      },
+      {
+        id: 'shoulder',
+        title: "Shoulder Day",
+        exerecises: [
+          "Barbell Squat",
+          "Romanian Deadlift",
+          "Leg Press",
+          "Walking Lunges",
+          "Leg Extension",
+        ],
+      },
+      {
+        id: 'arm',
+        title: "Arms Day",
+        exerecises: [
+          "Barbell Squat",
+          "Romanian Deadlift",
+          "Leg Press",
+          "Walking Lunges",
+          "Leg Extension",
+        ],
+      },
+    ];
+
     tasks.forEach((task) => {
-      task.addEventListener('click' ,() => {
-        workoutCard.classList.remove('hide')        
-      })
-    })
-    
+      task.addEventListener("click", () => {
+        workoutCard.classList.remove("hide");
+        const workoutId = task.dataset.workout;
 
-
+        const selectedWorkout = workouts.find(
+          workout => workout.id === workoutId
+        );
+        
+        if (!selectedWorkout) return;
+        workoutCard.innerHTML = "";
+        const workoutList = document.createElement("ul");
+        workoutList.classList.add('workout-items')
+        selectedWorkout.exerecises.forEach(exercise => {
+          const li = document.createElement("li");
+          li.classList.add('wt-item')
+          li.innerHTML = `<span class="item-num">1</span>
+                        <h3 class="item-text">${exercise}</h3>
+                            <img class="wt-icon" src="./images/leg.png" alt="">` 
+          workoutList.appendChild(li);
+        });
+        workoutCard.append(workoutList);
+      });
+    });
 
     dayDivs.forEach((dayDiv) => {
       dayDiv.addEventListener("click", () => {
@@ -120,21 +182,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkBtns = document.querySelectorAll(".check");
     const closeBtns = document.querySelectorAll(".close");
 
-    console.log(checkBtns,closeBtns);
-    
-    checkBtns.forEach((checkBtn => {
+
+    checkBtns.forEach((checkBtn) => {
       checkBtn.addEventListener("click", () => {
         droppedCard.classList.add("hide");
         workoutCard.classList.add("hide");
       });
-    }))
+    });
     closeBtns.forEach((closeBtn) => {
       closeBtn.addEventListener("click", () => {
         droppedCard.classList.add("hide");
         workoutCard.classList.add("hide");
       });
-    })
-}
+    });
+  }
 
   renderCalendar(currentDate);
 

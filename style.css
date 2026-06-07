@@ -12,7 +12,7 @@ body{
     font-family: 'Bitcount';
     display: grid;
     place-items: center;
-    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)), url(./images/—Pngtree—close-up\ of\ a\ pair\ heavy_16432146.png) center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)), url(./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg) center/cover no-repeat;
     height: 100vh;
     margin: 0;
 }
@@ -36,7 +36,7 @@ i{
 
     background:
         linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url("./images/—Pngtree—close-up\ of\ a\ pair\ heavy_16432146.png")
+        url("./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg")
         center/cover no-repeat;
 }
 
@@ -46,7 +46,7 @@ i{
     inset: 0;
     padding: 2px; /* ضخامت بوردر */
     border-radius: inherit;
-    background: linear-gradient(90deg, #66666672, #ffae00, #66666674);
+    background: linear-gradient(135deg, #66666672, #ffae008a, #b6b6b674);
 
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
