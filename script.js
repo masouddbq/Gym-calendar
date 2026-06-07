@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const workouts = [
       {
-        id: 'leg',
+        id: "leg",
         title: "Leg Day",
         exerecises: [
           "Barbell Squat",
@@ -95,36 +95,36 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
       },
       {
-        id: 'chest',
+        id: "chest",
         title: "Chest Day",
         exerecises: [
-          "Barbell Squat",
-          "Romanian Deadlift",
-          "Leg Press",
-          "Walking Lunges",
-          "Leg Extension",
+          "Barbell Bench Press",
+          "Incline Dumbbell Press",
+          "Chest Fly",
+          "Push-Up",
+          "Cable Crossover",
         ],
       },
       {
-        id: 'shoulder',
+        id: "shoulder",
         title: "Shoulder Day",
         exerecises: [
-          "Barbell Squat",
-          "Romanian Deadlift",
-          "Leg Press",
-          "Walking Lunges",
-          "Leg Extension",
+          "Overhead Press",
+          "Dumbbell Lateral Raise",
+          "Front Raise",
+          "Rear Delt Fly",
+          "Arnold Press",
         ],
       },
       {
-        id: 'arm',
+        id: "arm",
         title: "Arms Day",
         exerecises: [
-          "Barbell Squat",
-          "Romanian Deadlift",
-          "Leg Press",
-          "Walking Lunges",
-          "Leg Extension",
+          "Barbell Curl",
+          "Hammer Curl",
+          "Tricep Pushdown",
+          "Skull Crusher",
+          "Concentration Curl",
         ],
       },
     ];
@@ -135,22 +135,40 @@ document.addEventListener("DOMContentLoaded", () => {
         const workoutId = task.dataset.workout;
 
         const selectedWorkout = workouts.find(
-          workout => workout.id === workoutId
+          (workout) => workout.id === workoutId,
         );
-        
+
         if (!selectedWorkout) return;
-        workoutCard.innerHTML = "";
+        workoutCard.innerHTML = ` <div class="workout-header"> 
+                    <i class="bi bi-check-circle check"></i>
+                    <i class="bi bi-x-circle close"></i>
+                </div>`;
         const workoutList = document.createElement("ul");
-        workoutList.classList.add('workout-items')
-        selectedWorkout.exerecises.forEach(exercise => {
+        workoutList.classList.add("workout-items");
+        selectedWorkout.exerecises.forEach((exercise) => {
           const li = document.createElement("li");
-          li.classList.add('wt-item')
+          li.classList.add("wt-item");
           li.innerHTML = `<span class="item-num">1</span>
                         <h3 class="item-text">${exercise}</h3>
-                            <img class="wt-icon" src="./images/leg.png" alt="">` 
+                            <img class="wt-icon" src="./images/leg.png" alt="">`;
           workoutList.appendChild(li);
         });
         workoutCard.append(workoutList);
+        const checkBtns = document.querySelectorAll(".check");
+        const closeBtns = document.querySelectorAll(".close");
+
+        checkBtns.forEach((checkBtn) => {
+          checkBtn.addEventListener("click", () => {
+            droppedCard.classList.add("hide");
+            workoutCard.classList.add("hide");
+          });
+        });
+        closeBtns.forEach((closeBtn) => {
+          closeBtn.addEventListener("click", () => {
+            droppedCard.classList.add("hide");
+            workoutCard.classList.add("hide");
+          });
+        });
       });
     });
 
@@ -176,23 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
           dayDiv.style.backgroundColor = "";
           dayDiv.style.color = "";
         });
-      });
-    });
-
-    const checkBtns = document.querySelectorAll(".check");
-    const closeBtns = document.querySelectorAll(".close");
-
-
-    checkBtns.forEach((checkBtn) => {
-      checkBtn.addEventListener("click", () => {
-        droppedCard.classList.add("hide");
-        workoutCard.classList.add("hide");
-      });
-    });
-    closeBtns.forEach((closeBtn) => {
-      closeBtn.addEventListener("click", () => {
-        droppedCard.classList.add("hide");
-        workoutCard.classList.add("hide");
       });
     });
   }
