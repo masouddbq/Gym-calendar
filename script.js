@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderCalendar(date) {
     daysContainer.innerHTML = "";
 
-
     const year = date.getFullYear();
     const month = date.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
@@ -34,9 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevMonthLastDay = new Date(year, month, 0).getDate();
     for (let i = firstDay; i > 0; i--) {
       const dayDiv = document.createElement("div");
-      dayDiv.addEventListener('dragover' , () => {
-        console.log('dragover');
-      })
+      dayDiv.addEventListener("dragover", () => {
+        console.log("dragover");
+      });
       dayDiv.textContent = prevMonthLastDay - i + 1;
       dayDiv.classList.add("fade", "day-div");
       daysContainer.appendChild(dayDiv);
@@ -49,11 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 1; i <= lastDay; i++) {
       const dayDiv = document.createElement("div");
-      dayDiv.addEventListener('dragover' , () => {
-        console.log('dragover');
-      })
+      dayDiv.addEventListener("dragover", () => {
+        console.log("dragover");
+      });
       dayDiv.textContent = i;
-      dayDiv.classList.add("day-div")
+      dayDiv.classList.add("day-div");
 
       if (
         i === today.getDate() &&
@@ -70,14 +69,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 1; i <= nextMonthFirstDay; i++) {
       const dayDiv = document.createElement("div");
-      dayDiv.addEventListener('dragover' , () => {
-        console.log('dragover');
-      })
+      dayDiv.addEventListener("dragover", () => {
+        console.log("dragover");
+      });
       dayDiv.textContent = i;
       dayDiv.classList.add("fade", "day-div");
       daysContainer.appendChild(dayDiv);
     }
-  }
+
+    const dayDivs = document.querySelectorAll(".day-div");
+    const droppedCard = document.querySelector(".dropped-card");
+    const workoutCard = document.querySelector('.workout-card')
+    const tasks = document.querySelectorAll('.tsk-item')
+
+    
+    tasks.forEach((task) => {
+      task.addEventListener('click' ,() => {
+        workoutCard.classList.remove('hide')        
+      })
+    })
+    
+
+
+
+    dayDivs.forEach((dayDiv) => {
+      dayDiv.addEventListener("click", () => {
+        droppedCard.classList.remove("hide");
+      });
+
+      dayDiv.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dayDiv.style.backgroundColor = "red";
+        dayDiv.style.color = "white";
+        e.dataTransfer.dropEffect = "move";
+
+        dayDiv.addEventListener("dragleave", () => {
+          dayDiv.style.backgroundColor = "";
+          dayDiv.style.color = "";
+          dayDiv.style.transition = "0.3s ease";
+        });
+
+        dayDiv.addEventListener("drop", () => {
+          droppedCard.classList.remove("hide");
+          dayDiv.style.backgroundColor = "";
+          dayDiv.style.color = "";
+        });
+      });
+    });
+
+    const checkBtns = document.querySelectorAll(".check");
+    const closeBtns = document.querySelectorAll(".close");
+
+    console.log(checkBtns,closeBtns);
+    
+    checkBtns.forEach((checkBtn => {
+      checkBtn.addEventListener("click", () => {
+        droppedCard.classList.add("hide");
+        workoutCard.classList.add("hide");
+      });
+    }))
+    closeBtns.forEach((closeBtn) => {
+      closeBtn.addEventListener("click", () => {
+        droppedCard.classList.add("hide");
+        workoutCard.classList.add("hide");
+      });
+    })
+}
 
   renderCalendar(currentDate);
 
@@ -92,30 +149,4 @@ document.addEventListener("DOMContentLoaded", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar(currentDate);
   });
-
-
-
- 
-  const dayDivs = document.querySelectorAll('.day-div')
-  dayDivs.forEach((dayDiv) => {
-    dayDiv.addEventListener('dragover' , (e) => {
-      e.preventDefault();
-      dayDiv.style.backgroundColor = 'red';
-      dayDiv.style.color = 'white';
-      e.dataTransfer.dropEffect = 'move';
-
-      dayDiv.addEventListener('dragleave' , () => {
-        dayDiv.style.backgroundColor = '';
-        dayDiv.style.color = '';
-        dayDiv.style.transition = '0.3s ease' ;
-      })
-
-      dayDiv.addEventListener('drop' ,() => {
-        dayDiv.style.backgroundColor = '';
-        dayDiv.style.color = '';
-      })
-    })
-  })
 });
-
-

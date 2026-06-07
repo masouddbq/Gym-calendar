@@ -204,7 +204,7 @@ i{
     margin-top: 30px;
 }
 
-.tsk-list img{
+.wt-icon{
     width: 40px;
     height: 40px;
     margin: 0 20px;
@@ -229,6 +229,140 @@ i{
     font-weight: 600;
 }
 
+.dropped-card , .workout-card{
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    height: 400px;
+    background: linear-gradient(45deg,#000000d7,#2c2c2cee);
+    corner-shape:squircle;
+    border: 1px groove #2c2c2cee;
+    border-radius: 100px;
+    opacity: 1;
+    overflow: hidden;
+    transform: translateY(0);
+    transition: all .5s ease;
+}
+
+.workout-card{
+    corner-shape:squircle;
+    border-radius: 30%;
+    border: 2px dotted #66666672;
+    height: 500px;
+    transform: translateX(-450px);
+    background: linear-gradient(45deg,#000000d7,#2c2c2cee);
+    box-shadow: 0 0 10px 5px rgba(53, 52, 47, 0.438);
+}
+
+
+
+.dropped-header , .workout-header{
+    display: flex;
+    width: 25vw;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 30px;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.dropped-header i , .workout-header i{
+    cursor: pointer;
+}
+
+.dropped-header i.close , .workout-header i.close{
+    color: orangered;
+}
+.dropped-header i.check , .workout-header i.check{
+    color: yellowgreen;
+}
+
+.dropped-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #7a7a7a;
+}
+.dropped-info i{
+    color: #a9a9a9;
+    font-size: 32px;
+}
+
+.dropped-info p{
+    margin-bottom: 20px;
+}
+
+.workout-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    height: 70%;
+    padding: 0 10px;
+    margin: 10px 0;
+    background: linear-gradient(90deg , #ff8c0078,#ffae00aa);
+    box-shadow:0 0 5px 1px #ff8c00;
+    corner-shape:squircle;
+    border-radius: 100px;
+}
+
+.wt-item{
+    display: flex;
+    width: 90%;
+    padding: 5px 0px;
+    margin: 5px 0;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(23, 23, 23, 0.329);
+    corner-shape:squircle;
+    border-radius: 200px;
+}
+
+.wt-item .wt-icon{
+    border: 1px groove white;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow:0 0 5px 1px #ffae00;
+}
+
+
+
+.item-num{
+    margin: 0 20px;
+    font-weight: 600;
+    color: #a9a9a9;
+    text-decoration: underline;
+}
+
+.item-text{
+    color: white;
+    font-weight: 300;
+    font-size: 20px;
+    width: 80vw;
+}
+
+
+.card-dropzone{
+    /* position: absolute; */
+    width: 20vw;
+    height: 20vh;
+    border: 1px dotted #dbdbdb;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hide{
+    opacity: 0;
+    transition: 0.6s ease;
+    transform: translateX(-200px);
+    visibility: hidden;
+}
 
 
 
