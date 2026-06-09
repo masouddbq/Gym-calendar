@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,24 +8,25 @@
     font-family: Bitcount;
     src: url(./fonts/Outfit-VariableFont_wght.ttf);
 }
-body{
+
+body {
     font-family: 'Bitcount';
     display: grid;
     place-items: center;
-    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)), url(./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg) center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg) center/cover no-repeat;
     height: 100vh;
     margin: 0;
 }
 
-li{
+li {
     list-style-type: none;
 }
 
-h3{
+h3 {
     font-size: 24px;
 }
 
-i{
+i {
     color: #ff8c00;
 }
 
@@ -35,16 +36,16 @@ i{
     border-radius: 50px;
 
     background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url("./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg")
-        center/cover no-repeat;
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url("./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg") center/cover no-repeat;
 }
 
 .base::before {
     content: "";
     position: absolute;
     inset: 0;
-    padding: 2px; /* ضخامت بوردر */
+    padding: 2px;
+    /* ضخامت بوردر */
     border-radius: inherit;
     background: linear-gradient(135deg, #66666672, #ffae008a, #b6b6b674);
 
@@ -56,62 +57,65 @@ i{
 
     pointer-events: none;
 }
-.base-heading{
+
+.base-heading {
     display: flex;
     justify-content: space-between;
     color: white;
     margin: 0 20px;
 }
 
-.head-title h2{
+.head-title h2 {
     letter-spacing: 20px;
     font-size: 32px;
     color: #ff8c00;
 }
-.head-title p{
+
+.head-title p {
     letter-spacing: 10px;
 }
 
-.head-infos{
+.head-infos {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     width: 30vw;
 }
 
-.head-infos  i{
+.head-infos i {
     font-size: 22px;
 }
 
-.info-title,.info-text{
+.info-title,
+.info-text {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     width: 30vw;
 }
 
-.info-title i{
+.info-title i {
     margin-right: 50px;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px;
 }
 
-.calendar{
-    background: linear-gradient(90deg,rgba(0, 0, 0, 0.66) , #363636a2);
+.calendar {
+    background: linear-gradient(90deg, #16161674, #0202025a);
     padding: 15px;
     box-shadow: 0 0 10px 5px rgba(60, 51, 0, 0.438);
-    corner-shape : squircle;
+    corner-shape: squircle;
     border-radius: 50px;
     width: calc(60vw - 10px);
     height: 60vh;
 }
 
-.header{
+.header {
     text-align: center;
     font-weight: 900;
     color: #ff8c00;
@@ -121,100 +125,120 @@ i{
     align-items: center;
 }
 
-.week-days , .days{
+.week-days,
+.days {
     display: flex;
     flex-wrap: wrap;
     color: whitesmoke;
 }
 
-.days{
+.day-div {
+    display: flex;
+    justify-content: center;
+
+}
+
+.day-div img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    mix-blend-mode: multiply;
+}
+
+.days {
     height: 240px;
     color: #ffae00;
     margin: 2px;
 }
 
-.week-days div , .days div{
+.week-days div,
+.days div {
     width: 14.28%;
     text-align: center;
     padding: 10px 0;
     border-radius: 30px;
 }
 
-.days div{
+.days div {
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.days div:hover{
-    background-color:#856216;
+.days div:hover {
+    background-color: #856216;
     color: #dbdbdb;
 }
 
-.days .today{
-    background-color:#ffae00;
+.days .today {
+    background-color: #ffae00;
     color: #000000;
 }
 
-.fade{
+.fade {
     color: #666;
 }
 
 .header i {
-    margin:0 20px;
+    margin: 0 20px;
     cursor: pointer;
 }
-.header i:hover{
+
+.header i:hover {
     color: #856216;
 }
 
-.tasks{
-    width:calc(30vw - 20px);
+.tasks {
+    width: calc(30vw - 20px);
     height: 60vh;
-    background: linear-gradient(90deg , #3636367e , rgba(30, 30, 30, 0.824));
+    background: linear-gradient(90deg, #3636367e, rgba(30, 30, 30, 0.824));
     box-shadow: 0 0 10px 5px rgba(60, 51, 0, 0.438);
     display: flex;
-    margin:0 20px;
+    margin: 0 20px;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     border-radius: 100px;
-    corner-shape:squircle ;
+    corner-shape: squircle;
 }
 
-.tsk-header{
+.tsk-header {
     margin-top: 20px;
     color: #ff8c00;
 }
 
-.tsk-list{
+.tsk-list {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(90deg , #ff8c0078,#ffae00aa);
-    box-shadow:0 0 5px 1px #ff8c00;
+    background: linear-gradient(90deg, #ff8c0078, #ffae00aa);
+    box-shadow: 0 0 5px 1px #ff8c00;
     border-radius: 100px;
-    corner-shape:squircle;
+    corner-shape: squircle;
     height: 50vh;
     width: 22vw;
-    margin:20px 0;
+    margin: 20px 0;
     transition: 0.5s ease;
 }
-.tsk-list:hover{
+
+.tsk-list:hover {
     margin-top: 30px;
 }
 
-.wt-icon{
+.wt-icon {
     width: 40px;
     height: 40px;
     margin: 0 20px;
     color: white;
 }
 
-#shoulder{
+#shoulder {
     mix-blend-mode: multiply;
 }
-.tsk-item{
+
+.tsk-item {
     color: white;
     cursor: grab;
     user-select: none;
@@ -229,7 +253,8 @@ i{
     font-weight: 600;
 }
 
-.dropped-card , .workout-card{
+.dropped-card,
+.workout-card {
     display: flex;
     position: absolute;
     justify-content: space-evenly;
@@ -237,8 +262,8 @@ i{
     align-items: center;
     width: 30vw;
     height: 400px;
-    background: linear-gradient(45deg,#000000d7,#2c2c2cee);
-    corner-shape:squircle;
+    background: linear-gradient(45deg, #000000d7, #2c2c2cee);
+    corner-shape: squircle;
     border: 1px groove #2c2c2cee;
     border-radius: 100px;
     opacity: 1;
@@ -247,19 +272,20 @@ i{
     transition: all .5s ease;
 }
 
-.workout-card{
-    corner-shape:squircle;
+.workout-card {
+    corner-shape: squircle;
     border-radius: 30%;
     border: 2px dotted #66666672;
     height: 500px;
     transform: translateX(-450px);
-    background: linear-gradient(45deg,#000000d7,#2c2c2cee);
+    background: linear-gradient(45deg, #000000d7, #2c2c2cee);
     box-shadow: 0 0 10px 5px rgba(53, 52, 47, 0.438);
 }
 
 
 
-.dropped-header , .workout-header{
+.dropped-header,
+.workout-header {
     display: flex;
     width: 25vw;
     justify-content: space-between;
@@ -269,34 +295,39 @@ i{
     font-weight: 900;
 }
 
-.dropped-header i , .workout-header i{
+.dropped-header i,
+.workout-header i {
     cursor: pointer;
 }
 
-.dropped-header i.close , .workout-header i.close{
+.dropped-header i.close,
+.workout-header i.close {
     color: orangered;
 }
-.dropped-header i.check , .workout-header i.check{
+
+.dropped-header i.check,
+.workout-header i.check {
     color: yellowgreen;
 }
 
-.dropped-info{
+.dropped-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #7a7a7a;
 }
-.dropped-info i{
+
+.dropped-info i {
     color: #a9a9a9;
     font-size: 32px;
 }
 
-.dropped-info p{
+.dropped-info p {
     margin-bottom: 20px;
 }
 
-.workout-items{
+.workout-items {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -305,13 +336,13 @@ i{
     height: 70%;
     padding: 0 10px;
     margin: 10px 0;
-    background: linear-gradient(90deg , #ff8c0078,#ffae00aa);
-    box-shadow:0 0 5px 1px #ff8c00;
-    corner-shape:squircle;
+    background: linear-gradient(90deg, #ff8c0078, #ffae00aa);
+    box-shadow: 0 0 5px 1px #ff8c00;
+    corner-shape: squircle;
     border-radius: 100px;
 }
 
-.wt-item{
+.wt-item {
     display: flex;
     width: 90%;
     padding: 5px 0px;
@@ -319,27 +350,27 @@ i{
     justify-content: flex-start;
     align-items: center;
     background-color: rgba(23, 23, 23, 0.329);
-    corner-shape:squircle;
+    corner-shape: squircle;
     border-radius: 200px;
 }
 
-.wt-item .wt-icon{
+.wt-item .wt-icon {
     border: 1px groove white;
     border-radius: 50%;
     padding: 2px;
-    box-shadow:0 0 5px 1px #ffae00;
+    box-shadow: 0 0 5px 1px #ffae00;
 }
 
 
 
-.item-num{
+.item-num {
     margin: 0 20px;
     font-weight: 600;
     color: #a9a9a9;
     text-decoration: underline;
 }
 
-.item-text{
+.item-text {
     color: white;
     font-weight: 300;
     font-size: 20px;
@@ -347,7 +378,7 @@ i{
 }
 
 
-.card-dropzone{
+.card-dropzone {
     /* position: absolute; */
     width: 20vw;
     height: 20vh;
@@ -357,14 +388,10 @@ i{
     justify-content: center;
     align-items: center;
 }
-.hide{
+
+.hide {
     opacity: 0;
     transition: 0.6s ease;
     transform: translateX(-200px);
     visibility: hidden;
 }
-
-
-
-
-

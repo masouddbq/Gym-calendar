@@ -21,6 +21,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let today = new Date();
 
   function renderCalendar(date) {
+    function closeCard() {
+      const checkBtns = document.querySelectorAll(".check");
+      const closeBtns = document.querySelectorAll(".close");
+
+      checkBtns.forEach((checkBtn) => {
+        checkBtn.addEventListener("click", () => {
+          droppedCard.classList.add("hide");
+          workoutCard.classList.add("hide");
+        });
+      });
+      closeBtns.forEach((closeBtn) => {
+        closeBtn.addEventListener("click", () => {
+          droppedCard.classList.add("hide");
+          workoutCard.classList.add("hide");
+        });
+      });
+    }
+
     daysContainer.innerHTML = "";
 
     const year = date.getFullYear();
@@ -79,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const dayDivs = document.querySelectorAll(".day-div");
     const droppedCard = document.querySelector(".dropped-card");
+    const cardDropzone = document.querySelector(".card-dropzone");
     const workoutCard = document.querySelector(".workout-card");
     const tasks = document.querySelectorAll(".tsk-item");
 
@@ -93,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Walking Lunges",
           "Leg Extension",
         ],
+        icon: "./images/leg.png",
       },
       {
         id: "chest",
@@ -104,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Push-Up",
           "Cable Crossover",
         ],
+        icon: "./images/chest.png",
       },
       {
         id: "shoulder",
@@ -115,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Rear Delt Fly",
           "Arnold Press",
         ],
+        icon: "./images/shoulder.jpg",
       },
       {
         id: "arm",
@@ -126,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Skull Crusher",
           "Concentration Curl",
         ],
+        icon: "./images/Arms.png",
       },
     ];
 
@@ -133,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
       task.addEventListener("click", () => {
         workoutCard.classList.remove("hide");
         const workoutId = task.dataset.workout;
+        //  console.log(workoutId);
 
         const selectedWorkout = workouts.find(
           (workout) => workout.id === workoutId,
@@ -154,27 +178,25 @@ document.addEventListener("DOMContentLoaded", () => {
           workoutList.appendChild(li);
         });
         workoutCard.append(workoutList);
-        const checkBtns = document.querySelectorAll(".check");
-        const closeBtns = document.querySelectorAll(".close");
-
-        checkBtns.forEach((checkBtn) => {
-          checkBtn.addEventListener("click", () => {
-            droppedCard.classList.add("hide");
-            workoutCard.classList.add("hide");
-          });
-        });
-        closeBtns.forEach((closeBtn) => {
-          closeBtn.addEventListener("click", () => {
-            droppedCard.classList.add("hide");
-            workoutCard.classList.add("hide");
-          });
-        });
+        closeCard();
       });
     });
 
     dayDivs.forEach((dayDiv) => {
       dayDiv.addEventListener("click", () => {
         droppedCard.classList.remove("hide");
+        cardDropzone.addEventListener('drop' ,() => {
+          // const workoutId = draggedTask.dataset.workout;
+          // const selectedWorkout = workouts.find((item) => item.id === workoutId);
+          
+          // if (selectedWorkout) {
+          //   cardDropzone.innerHTML = ''
+          //   cardDropzone.innerHTML += `<img src="${selectedWorkout.icon}">`;
+          //   console.log(cardDropzone.innerHTML);
+          // }
+          console.log('dropped');
+          
+        })
       });
 
       dayDiv.addEventListener("dragover", (e) => {
@@ -188,14 +210,44 @@ document.addEventListener("DOMContentLoaded", () => {
           dayDiv.style.color = "";
           dayDiv.style.transition = "0.3s ease";
         });
+      });
 
-        dayDiv.addEventListener("drop", () => {
-          droppedCard.classList.remove("hide");
-          dayDiv.style.backgroundColor = "";
-          dayDiv.style.color = "";
+      let draggedTask = null;
+
+      tasks.forEach((task) => {
+        task.addEventListener("dragstart", () => {
+          draggedTask = task;
         });
       });
+
+      cardDropzone.addEventListener('drop' ,() => {
+        const workoutId = draggedTask.dataset.workout;
+        const selectedWorkout = workouts.find((item) => item.id === workoutId);
+        
+        if (selectedWorkout) {
+          cardDropzone.innerHTML += `<img src="${selectedWorkout.icon}">`;
+        }
+      })
+
+      dayDiv.addEventListener("drop", (e) => {
+        e.preventDefault();
+
+        if (dayDiv.querySelector("img")) return;
+
+        const workoutId = draggedTask.dataset.workout;
+
+        const selectedWorkout = workouts.find((item) => item.id === workoutId);
+
+        if (selectedWorkout) {
+          dayDiv.innerHTML += `<img src="${selectedWorkout.icon}">`;
+          dayDiv.classList.add("day-div");
+          dayDiv.style.backgroundColor = "#ff8c00";
+          dayDiv.style.border = "1px dashed white"
+          dayDiv.style.color = "white";
+        }
+      });
     });
+    closeCard();
   }
 
   renderCalendar(currentDate);
