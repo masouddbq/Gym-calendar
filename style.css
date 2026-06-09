@@ -379,19 +379,37 @@ i {
 
 
 .card-dropzone {
-    /* position: absolute; */
-    width: 20vw;
+    position: relative;
+    width: 100%;
     height: 20vh;
-    border: 1px dotted #dbdbdb;
-    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.card-dropzone .tsk-list {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    height: 15vh;
+    margin: 0;
+    padding: 0;
+}
 
+.card-dropzone .tsk-list .tsk-item{
+    width: 50px;
+    margin: 0;
+    padding:10px 35px;
+    justify-content: center;
+
+}
+
+#card-day{
+    color: white;
+}
 .hide {
     opacity: 0;
     transition: 0.6s ease;
-    transform: translateX(-200px);
+    transform: translateX(400px);
     visibility: hidden;
 }

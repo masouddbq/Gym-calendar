@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const dayDivs = document.querySelectorAll(".day-div");
     const droppedCard = document.querySelector(".dropped-card");
-    const cardDropzone = document.querySelector(".card-dropzone");
     const workoutCard = document.querySelector(".workout-card");
     const tasks = document.querySelectorAll(".tsk-item");
 
@@ -165,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!selectedWorkout) return;
         workoutCard.innerHTML = ` <div class="workout-header"> 
                     <i class="bi bi-check-circle check"></i>
+                    <h3 style="color :white;">${workoutId}</h3>
                     <i class="bi bi-x-circle close"></i>
                 </div>`;
         const workoutList = document.createElement("ul");
@@ -185,18 +185,16 @@ document.addEventListener("DOMContentLoaded", () => {
     dayDivs.forEach((dayDiv) => {
       dayDiv.addEventListener("click", () => {
         droppedCard.classList.remove("hide");
-        cardDropzone.addEventListener('drop' ,() => {
-          // const workoutId = draggedTask.dataset.workout;
-          // const selectedWorkout = workouts.find((item) => item.id === workoutId);
-          
-          // if (selectedWorkout) {
-          //   cardDropzone.innerHTML = ''
-          //   cardDropzone.innerHTML += `<img src="${selectedWorkout.icon}">`;
-          //   console.log(cardDropzone.innerHTML);
-          // }
-          console.log('dropped');
-          
+        let dayNumber = document.getElementById('card-day')
+        dayNumber.innerHTML = `${months[currentDate.getMonth()]} , Day ${dayDiv.textContent}`
+
+        const droppedCardTasks = droppedCard.querySelectorAll('.tsk-item')
+        droppedCardTasks.forEach((task) => {
+          task.addEventListener('click' , () => {
+
+          })
         })
+                
       });
 
       dayDiv.addEventListener("dragover", (e) => {
@@ -220,15 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      cardDropzone.addEventListener('drop' ,() => {
-        const workoutId = draggedTask.dataset.workout;
-        const selectedWorkout = workouts.find((item) => item.id === workoutId);
-        
-        if (selectedWorkout) {
-          cardDropzone.innerHTML += `<img src="${selectedWorkout.icon}">`;
-        }
-      })
-
       dayDiv.addEventListener("drop", (e) => {
         e.preventDefault();
 
@@ -242,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
           dayDiv.innerHTML += `<img src="${selectedWorkout.icon}">`;
           dayDiv.classList.add("day-div");
           dayDiv.style.backgroundColor = "#ff8c00";
-          dayDiv.style.border = "1px dashed white"
+          dayDiv.style.border = "1px dashed white";
           dayDiv.style.color = "white";
         }
       });
@@ -262,5 +251,5 @@ document.addEventListener("DOMContentLoaded", () => {
   prevArrow.addEventListener("click", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar(currentDate);
-  });
+  }); 
 });
