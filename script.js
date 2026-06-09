@@ -182,19 +182,42 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    let selectedTask = null;
+
+    tasks.forEach((task) => {
+      task.addEventListener("dragstart", () => {
+        selectedTask = task;
+      });
+    });
+
     dayDivs.forEach((dayDiv) => {
       dayDiv.addEventListener("click", () => {
         droppedCard.classList.remove("hide");
-        let dayNumber = document.getElementById('card-day')
-        dayNumber.innerHTML = `${months[currentDate.getMonth()]} , Day ${dayDiv.textContent}`
+        let dayNumber = document.getElementById("card-day");
+        dayNumber.innerHTML = `${months[currentDate.getMonth()]} , Day ${dayDiv.textContent}`;
 
-        const droppedCardTasks = droppedCard.querySelectorAll('.tsk-item')
+        const droppedCardTasks = droppedCard.querySelectorAll(".tsk-item");
         droppedCardTasks.forEach((task) => {
-          task.addEventListener('click' , () => {
+          task.addEventListener("click", (e) => {
+            e.preventDefault();
+            selectedTask = task;
+            droppedCard.classList.add("hide");
+            workoutCard.classList.add("hide");
+            
+            const workoutId = selectedTask.dataset.workout;
 
-          })
-        })
-                
+            const selectedWorkout = workouts.find(
+              (item) => item.id === workoutId,
+            );
+            if (dayDiv.querySelector("img")) return;
+
+            dayDiv.innerHTML += `<img src="${selectedWorkout.icon}">`;
+            dayDiv.classList.add("day-div");
+            dayDiv.style.backgroundColor = "#ff8c00";
+            dayDiv.style.border = "1px dashed white";
+            dayDiv.style.color = "white";
+          });
+        });
       });
 
       dayDiv.addEventListener("dragover", (e) => {
@@ -210,20 +233,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      let draggedTask = null;
-
-      tasks.forEach((task) => {
-        task.addEventListener("dragstart", () => {
-          draggedTask = task;
-        });
-      });
-
       dayDiv.addEventListener("drop", (e) => {
         e.preventDefault();
 
         if (dayDiv.querySelector("img")) return;
 
-        const workoutId = draggedTask.dataset.workout;
+        const workoutId = selectedTask.dataset.workout;
 
         const selectedWorkout = workouts.find((item) => item.id === workoutId);
 
@@ -251,5 +266,5 @@ document.addEventListener("DOMContentLoaded", () => {
   prevArrow.addEventListener("click", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar(currentDate);
-  }); 
+  });
 });
