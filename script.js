@@ -46,8 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const firstDay = new Date(year, month, 1).getDay();
     const lastDay = new Date(year, month + 1, 0).getDate();
 
-    console.log(firstDay);
-
     const prevMonthLastDay = new Date(year, month, 0).getDate();
     for (let i = firstDay; i > 0; i--) {
       const dayDiv = document.createElement("div");
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const monthLastDay = new Date(year, month + 1, 0).getDay();
-    console.log(monthLastDay);
 
     monthYear.textContent = `${months[month]} ${year}`;
 
@@ -197,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dayNumber.innerHTML = `${months[currentDate.getMonth()]} , Day ${dayDiv.textContent}`;
 
         const droppedCardTasks = droppedCard.querySelectorAll(".tsk-item");
+        
         droppedCardTasks.forEach((task) => {
           task.addEventListener("click", (e) => {
             e.preventDefault();

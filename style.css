@@ -417,6 +417,7 @@ i {
     transform: translateX(400px);
     visibility: hidden;
 }
+
 /* ************************************* */
 
 /* ======== MOBILE RESPONSIVE ========= */
@@ -425,9 +426,15 @@ i {
 
 
 @media screen and (width <=568px) {
+
+    h3 {
+        font-size: 20px;
+    }
+
     .base {
         overflow: hidden;
         padding: 30px 10px;
+        height: 80vh;
 
     }
 
@@ -442,8 +449,7 @@ i {
         text-align: center;
         width: 80vw;
         display: flex;
-        justify-content: space-evenly;
-
+        justify-content: center;
         margin: 20px 0;
     }
 
@@ -458,6 +464,7 @@ i {
 
     .calendar {
         width: 80vw;
+        height: 50vh;
         overflow: hidden;
     }
 
@@ -471,7 +478,7 @@ i {
         height: 350px;
     }
 
-    .dropped-header{
+    .dropped-header {
         position: absolute;
         width: 60vw;
         top: 30px;
@@ -481,7 +488,20 @@ i {
         position: absolute;
         bottom: 50px;
     }
-    .tsk-list{
-        width: 60vw;
+
+    .card-dropzone .tsk-list{
+        width: 65vw;
+        height: 10vh;
+        overflow: hidden;
+    }
+
+    .card-dropzone .tsk-item{
+        padding: 0px;
+    }
+
+    .card-dropzone .tsk-item .wt-icon {
+        width: 30px;
+        height: 30px;
+        padding: 0;
     }
 }
