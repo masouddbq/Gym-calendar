@@ -409,6 +409,11 @@ i {
     visibility: hidden;
 }
 
+.different{
+    scale: 1.2;
+    border: 2px solid #ff8c00;
+}
+
 /* ************************************* */
 
 /* ======== TABLET RESPONSIVE ========= */

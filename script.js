@@ -187,6 +187,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+
+    function boldTask(item) {
+      if (item.classList.contains('different')) {
+        return;
+      } 
+
+      const activeItem = document.querySelector('.different')
+
+      if(activeItem) {
+        activeItem.classList.remove('different')
+      }
+
+      item.classList.add('different')
+    }
+
+    
+
     dayDivs.forEach((dayDiv) => {
       dayDiv.addEventListener("click", () => {
         droppedCard.classList.remove("hide");
@@ -195,13 +212,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const droppedCardTasks = droppedCard.querySelectorAll(".tsk-item");
         
+
+        
+
         droppedCardTasks.forEach((task) => {
           task.addEventListener("click", (e) => {
             e.preventDefault();
             selectedTask = task;
+            
+            
+            boldTask(task);
             droppedCard.classList.add("hide");
             workoutCard.classList.add("hide");
-            
+
             const workoutId = selectedTask.dataset.workout;
 
             const selectedWorkout = workouts.find(
