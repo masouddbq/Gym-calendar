@@ -11,8 +11,9 @@
 
 body {
     font-family: 'Bitcount';
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg) center/cover no-repeat;
     height: 100vh;
     margin: 0;
@@ -39,6 +40,7 @@ i {
         linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
         url("./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg") center/cover no-repeat;
 }
+
 
 .base::before {
     content: "";
@@ -142,8 +144,8 @@ i {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     mix-blend-mode: multiply;
 }
 
@@ -386,6 +388,7 @@ i {
     justify-content: center;
     align-items: center;
 }
+
 .card-dropzone .tsk-list {
     position: absolute;
     display: flex;
@@ -396,20 +399,89 @@ i {
     padding: 0;
 }
 
-.card-dropzone .tsk-list .tsk-item{
+.card-dropzone .tsk-list .tsk-item {
     width: 50px;
     margin: 0;
-    padding:10px 35px;
+    padding: 10px 35px;
     justify-content: center;
 
 }
 
-#card-day{
+#card-day {
     color: white;
 }
+
 .hide {
     opacity: 0;
     transition: 0.6s ease;
     transform: translateX(400px);
     visibility: hidden;
+}
+/* ************************************* */
+
+/* ======== MOBILE RESPONSIVE ========= */
+
+/* ************************************* */
+
+
+@media screen and (width <=568px) {
+    .base {
+        overflow: hidden;
+        padding: 30px 10px;
+
+    }
+
+    .base-heading {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 80vw;
+    }
+
+    .head-infos {
+        text-align: center;
+        width: 80vw;
+        display: flex;
+        justify-content: space-evenly;
+
+        margin: 20px 0;
+    }
+
+    .info-title,
+    .info-text {
+        width: 40vw;
+    }
+
+    .tasks {
+        display: none;
+    }
+
+    .calendar {
+        width: 80vw;
+        overflow: hidden;
+    }
+
+    .day-div img {
+        width: 25px;
+        height: 20px;
+    }
+
+    .dropped-card {
+        width: 70vw;
+        height: 350px;
+    }
+
+    .dropped-header{
+        position: absolute;
+        width: 60vw;
+        top: 30px;
+    }
+
+    .dropped-info {
+        position: absolute;
+        bottom: 50px;
+    }
+    .tsk-list{
+        width: 60vw;
+    }
 }
