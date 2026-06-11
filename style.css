@@ -320,15 +320,6 @@ i {
     color: #7a7a7a;
 }
 
-.dropped-info i {
-    color: #a9a9a9;
-    font-size: 32px;
-}
-
-.dropped-info p {
-    margin-bottom: 20px;
-}
-
 .workout-items {
     display: flex;
     justify-content: center;
@@ -420,10 +411,134 @@ i {
 
 /* ************************************* */
 
-/* ======== MOBILE RESPONSIVE ========= */
+/* ======== TABLET RESPONSIVE ========= */
+
+/* ************************************* */
+ 
+
+@media screen and (567px <= width <= 1365px) {
+
+    h3 {
+        font-size: 24px;
+    }
+
+    .base {
+        overflow: hidden;
+        padding: 40px 10px;
+        height: 70vh;
+    }
+
+    .base-heading {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 90vw;
+    }
+
+    .head-infos {
+        text-align: center;
+        width: 90vw;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 30px 0;
+    }
+
+    .info-title,
+    .info-text {
+        width: 25vw;
+        justify-content: space-evenly;
+    }
+    .month-year{
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .calendar , .tasks {
+        height: 100%;
+    }
+
+    .tsk-container{
+        width: 100vw;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .tsk-list{
+        height: 30vh;
+        width: 25vw;
+        margin: 10px 0;
+        justify-content: center;
+    }
+
+    .tsk-item{
+        width: 90%;
+        padding: 10px 0;
+        border-radius: 10px;    
+        font-size: 8px;
+        margin: 10px 0;
+        justify-content: flex-start;
+    }
+
+    .tsk-item .wt-icon{
+        width: 30px;
+        height: 30px;
+        margin-right:40px ;
+    }
+
+    .dropped-card{
+        width: 60vw;
+        height: 30vh;
+        border-radius: 60px;
+        padding: 20px;
+    }
+
+    .dropped-header{
+        width: 50vw;
+        margin: 0px 30px;
+        position: absolute;
+        top: 30px;
+        /* font-size: 24px; */
+    }
+
+    .dropped-info {
+        position: absolute;
+        top: 30%;
+    }
+
+    .card-dropzone .tsk-list{
+        height: 50%;
+        width: 50vw;
+        justify-content: space-evenly;
+    }
+
+    .card-dropzone .tsk-list .tsk-item{
+        width: 20%;
+        padding: 20px;
+        border-radius: 20px;
+        justify-content: center;
+        padding: 20px 0px;
+    }
+
+    .card-dropzone .tsk-list .tsk-item .wt-icon{
+        margin-right: 20px;
+        scale: 1.5;
+    }
+}
+
+@media screen and (1365px >= width >= 768px) {
+    .tsk-item{
+        font-size: 12px;
+    }
+}
+
+
 
 /* ************************************* */
 
+/* ======== MOBILE RESPONSIVE ========= */
+
+/* ************************************* */
 
 @media screen and (width <=568px) {
 
@@ -434,8 +549,7 @@ i {
     .base {
         overflow: hidden;
         padding: 30px 10px;
-        height: 80vh;
-
+        height: 70vh;
     }
 
     .base-heading {
@@ -458,13 +572,17 @@ i {
         width: 40vw;
     }
 
+    .month-year{
+        font-size: 24px;
+    }
+
     .tasks {
         display: none;
     }
 
     .calendar {
         width: 80vw;
-        height: 50vh;
+        height: 45vh;
         overflow: hidden;
     }
 
@@ -480,28 +598,28 @@ i {
 
     .dropped-header {
         position: absolute;
-        width: 60vw;
-        top: 30px;
+        width: 55vw;
+        top: 40px;
     }
 
     .dropped-info {
         position: absolute;
-        bottom: 50px;
+        bottom: 20px;
     }
 
     .card-dropzone .tsk-list{
         width: 65vw;
-        height: 10vh;
+        height: 8vh;
         overflow: hidden;
     }
 
-    .card-dropzone .tsk-item{
-        padding: 0px;
+    .card-dropzone .tsk-list .tsk-item{
+        padding: 10px 20px;
     }
 
-    .card-dropzone .tsk-item .wt-icon {
+    .card-dropzone .tsk-list .tsk-item .wt-icon {
         width: 30px;
         height: 30px;
-        padding: 0;
+        scale: 1;
     }
 }
