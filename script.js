@@ -218,20 +218,22 @@ document.addEventListener("DOMContentLoaded", () => {
         droppedCardTasks.forEach((task) => {
           task.addEventListener("click", (e) => {
             e.preventDefault();
-            selectedTask = task;
-            
-            
+
+            // selectedTask = task;
             boldTask(task);
             droppedCard.classList.add("hide");
             workoutCard.classList.add("hide");
 
-            const workoutId = selectedTask.dataset.workout;
+            const workoutId = task.dataset.workout;
 
             const selectedWorkout = workouts.find(
               (item) => item.id === workoutId,
             );
+
+            
             if (dayDiv.querySelector("img")) return;
 
+            
             dayDiv.innerHTML += `<img src="${selectedWorkout.icon}">`;
             dayDiv.classList.add("day-div");
             dayDiv.style.backgroundColor = "#ff8c00";
