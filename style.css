@@ -330,6 +330,7 @@ i {
     border-radius: 10px;
     background: linear-gradient( 90deg , #02020220   , #000000);
     color: white;
+    z-index: 10;
 }
 
 .workout-items {

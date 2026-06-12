@@ -254,13 +254,12 @@ document.addEventListener("DOMContentLoaded", () => {
             dayDiv.style.backgroundColor = "#ff8c00";
             dayDiv.style.border = "1px dashed white";
             dayDiv.style.color = "white";
-            const cleanBtn = document.getElementById('cleanBtn')
+            const cleanBtn = document.querySelector('.clean-btn')
   
             cleanBtn.addEventListener('click' , () => {
               task.classList.remove('different')
               dayDiv.innerHTML = dayDiv.textContent
               dayDiv.classList.add('day-div')
-
             })
           });
           
