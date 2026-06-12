@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dayDivs = document.querySelectorAll(".day-div");
     const droppedCard = document.querySelector(".dropped-card");
     const workoutCard = document.querySelector(".workout-card");
-    const tasks = document.querySelectorAll(".tsk-item");
+    const tasks = document.querySelectorAll(".tsk-container .tsk-item");
 
     const workouts = [
       {
@@ -148,6 +148,35 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ];
 
+    // تابع بولد کردن آیکون حرکت روز در کارت دراپ شده روز مدنظر
+    function boldTask(item) {
+      if (item.classList.contains('different')) {
+        return;
+      } 
+
+      const activeItem = document.querySelector('.different')
+
+      if(activeItem) {
+        activeItem.classList.remove('different')
+      }
+
+      item.classList.add('different')
+    }
+
+    // ========= پایان تابع بولد ===========
+
+      // برای انتخاب تسک مورد نظر کلیک شده
+      let selectedTask = null;
+
+      tasks.forEach((task) => {
+        task.addEventListener("dragstart", () => {
+          selectedTask = task;
+        });
+      });
+      // ========  پایان ===========
+
+    // برای نمایش دادن لیست حرکات ورزشی از آرایه حرکات زمانی که روی لیست تسک ها در منو کلیک میشود
+
     tasks.forEach((task) => {
       task.addEventListener("click", () => {
         workoutCard.classList.remove("hide");
@@ -179,52 +208,37 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    let selectedTask = null;
+    //  ============== پایان  ===============
 
-    tasks.forEach((task) => {
-      task.addEventListener("dragstart", () => {
-        selectedTask = task;
-      });
-    });
-
-
-    function boldTask(item) {
-      if (item.classList.contains('different')) {
-        return;
-      } 
-
-      const activeItem = document.querySelector('.different')
-
-      if(activeItem) {
-        activeItem.classList.remove('different')
-      }
-
-      item.classList.add('different')
-    }
-
-    
+    // برای ایجاد پیمایش روی هر یک از روز های تقویم 
+    let dayBox ;
 
     dayDivs.forEach((dayDiv) => {
       dayDiv.addEventListener("click", () => {
+        
+        dayBox = []
+        
+        dayBox.push(dayDiv)
+        
+        // console.log(dayBox[0]);
+        
+        
         droppedCard.classList.remove("hide");
         let dayNumber = document.getElementById("card-day");
         dayNumber.innerHTML = `${months[currentDate.getMonth()]} , Day ${dayDiv.textContent}`;
-
+        
+        
+        
         const droppedCardTasks = droppedCard.querySelectorAll(".tsk-item");
-        
-
-        
-
         droppedCardTasks.forEach((task) => {
           task.addEventListener("click", (e) => {
-            e.preventDefault();
 
+            e.preventDefault();
+            
             // selectedTask = task;
             boldTask(task);
-            droppedCard.classList.add("hide");
-            workoutCard.classList.add("hide");
 
-            const workoutId = task.dataset.workout;
+            const workoutId = task.dataset.workout;  
 
             const selectedWorkout = workouts.find(
               (item) => item.id === workoutId,
@@ -232,6 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             
             if (dayDiv.querySelector("img")) return;
+            
 
             
             dayDiv.innerHTML += `<img src="${selectedWorkout.icon}">`;
@@ -239,9 +254,30 @@ document.addEventListener("DOMContentLoaded", () => {
             dayDiv.style.backgroundColor = "#ff8c00";
             dayDiv.style.border = "1px dashed white";
             dayDiv.style.color = "white";
+            const cleanBtn = document.getElementById('cleanBtn')
+  
+            cleanBtn.addEventListener('click' , () => {
+              task.classList.remove('different')
+              dayDiv.innerHTML = dayDiv.textContent
+              dayDiv.classList.add('day-div')
+
+            })
           });
+          
         });
+        closeCard()
       });
+
+
+
+
+
+
+
+
+
+
+
 
       dayDiv.addEventListener("dragover", (e) => {
         e.preventDefault();
@@ -274,8 +310,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+
+    // ============  پایان پیمایش روی روز های تقویم ================
     closeCard();
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   renderCalendar(currentDate);
 

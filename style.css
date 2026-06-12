@@ -318,6 +318,18 @@ i {
     justify-content: center;
     align-items: center;
     color: #7a7a7a;
+    position: relative;
+}
+
+.clean-btn{
+    position: absolute;
+    scale: 1.2;
+    bottom: 160px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: linear-gradient( 90deg , #02020220   , #000000);
+    color: white;
 }
 
 .workout-items {
@@ -512,10 +524,15 @@ i {
         top: 30%;
     }
 
+    .clean-btn{
+        bottom: 10%;
+    }
+
     .card-dropzone .tsk-list{
         height: 50%;
         width: 50vw;
         justify-content: space-evenly;
+        margin-bottom: 50px;
     }
 
     .card-dropzone .tsk-list .tsk-item{
@@ -612,11 +629,16 @@ i {
         position: absolute;
         bottom: 20px;
     }
+    .clean-btn{
+        bottom: 10px;
+        scale: 1;
+    }
 
     .card-dropzone .tsk-list{
         width: 65vw;
         height: 8vh;
         overflow: hidden;
+        margin-bottom: 20px;
     }
 
     .card-dropzone .tsk-list .tsk-item{
