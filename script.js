@@ -3,28 +3,70 @@ document.addEventListener("DOMContentLoaded", () => {
   const daysContainer = document.querySelector(".days");
 
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
   ];
 
   let currentDate = new Date();
   let today = new Date();
 
+  // ─── بیرون از renderCalendar ───
+  const workouts = [
+    {
+      id: "leg",
+      title: "Leg Day",
+      exerecises: ["Barbell Squat", "Romanian Deadlift", "Leg Press", "Walking Lunges", "Leg Extension"],
+      icon: "./images/leg.png",
+    },
+    {
+      id: "chest",
+      title: "Chest Day",
+      exerecises: ["Barbell Bench Press", "Incline Dumbbell Press", "Chest Fly", "Push-Up", "Cable Crossover"],
+      icon: "./images/chest.png",
+    },
+    {
+      id: "shoulder",
+      title: "Shoulder Day",
+      exerecises: ["Overhead Press", "Dumbbell Lateral Raise", "Front Raise", "Rear Delt Fly", "Arnold Press"],
+      icon: "./images/shoulder.jpg",
+    },
+    {
+      id: "arm",
+      title: "Arms Day",
+      exerecises: ["Barbell Curl", "Hammer Curl", "Tricep Pushdown", "Skull Crusher", "Concentration Curl"],
+      icon: "./images/Arms.png",
+    },
+  ];
+
+  // key منحصربه‌فرد برای هر روز
+  function getKey(date, dayNumber) {
+    return `${date.getFullYear()}-${date.getMonth()}-${dayNumber}`;
+  }
+
+  // ذخیره توی localStorage
+  function saveDay(dayNumber, workoutId) {
+    const key = getKey(currentDate, dayNumber);
+    localStorage.setItem(key, workoutId);
+  }
+
+  // حذف از localStorage
+  function removeDay(dayNumber) {
+    const key = getKey(currentDate, dayNumber);
+    localStorage.removeItem(key);
+  }
+
+  // خوندن از localStorage
+  function getSavedDay(date, dayNumber) {
+    const key = getKey(date, dayNumber);
+    return localStorage.getItem(key);
+  }
+  // ──────────────────────────────────
+
   function renderCalendar(date) {
+
     function closeCard() {
       const checkBtns = document.querySelectorAll(".check");
       const closeBtns = document.querySelectorAll(".close");
-
       checkBtns.forEach((checkBtn) => {
         checkBtn.addEventListener("click", () => {
           droppedCard.classList.add("hide");
@@ -45,48 +87,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const month = date.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
     const lastDay = new Date(year, month + 1, 0).getDate();
-
     const prevMonthLastDay = new Date(year, month, 0).getDate();
+
     for (let i = firstDay; i > 0; i--) {
       const dayDiv = document.createElement("div");
-      dayDiv.addEventListener("dragover", () => {
-        console.log("dragover");
-      });
       dayDiv.textContent = prevMonthLastDay - i + 1;
       dayDiv.classList.add("fade", "day-div");
       daysContainer.appendChild(dayDiv);
     }
 
-    const monthLastDay = new Date(year, month + 1, 0).getDay();
-
     monthYear.textContent = `${months[month]} ${year}`;
 
     for (let i = 1; i <= lastDay; i++) {
       const dayDiv = document.createElement("div");
-      dayDiv.addEventListener("dragover", () => {
-        console.log("dragover");
-      });
       dayDiv.textContent = i;
       dayDiv.classList.add("day-div");
 
-      if (
-        i === today.getDate() &&
-        month === today.getMonth() &&
-        year === today.getFullYear()
-      ) {
+      if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
         dayDiv.classList.add("today", "day-div");
       }
 
       daysContainer.appendChild(dayDiv);
     }
 
-    const nextMonthFirstDay = 7 - new Date(year, month + 1, 1).getDay(); // 3
-
+    const nextMonthFirstDay = 7 - new Date(year, month + 1, 1).getDay();
     for (let i = 1; i <= nextMonthFirstDay; i++) {
       const dayDiv = document.createElement("div");
-      dayDiv.addEventListener("dragover", () => {
-        console.log("dragover");
-      });
       dayDiv.textContent = i;
       dayDiv.classList.add("fade", "day-div");
       daysContainer.appendChild(dayDiv);
@@ -97,110 +123,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const workoutCard = document.querySelector(".workout-card");
     const tasks = document.querySelectorAll(".tsk-container .tsk-item");
 
-    const workouts = [
-      {
-        id: "leg",
-        title: "Leg Day",
-        exerecises: [
-          "Barbell Squat",
-          "Romanian Deadlift",
-          "Leg Press",
-          "Walking Lunges",
-          "Leg Extension",
-        ],
-        icon: "./images/leg.png",
-      },
-      {
-        id: "chest",
-        title: "Chest Day",
-        exerecises: [
-          "Barbell Bench Press",
-          "Incline Dumbbell Press",
-          "Chest Fly",
-          "Push-Up",
-          "Cable Crossover",
-        ],
-        icon: "./images/chest.png",
-      },
-      {
-        id: "shoulder",
-        title: "Shoulder Day",
-        exerecises: [
-          "Overhead Press",
-          "Dumbbell Lateral Raise",
-          "Front Raise",
-          "Rear Delt Fly",
-          "Arnold Press",
-        ],
-        icon: "./images/shoulder.jpg",
-      },
-      {
-        id: "arm",
-        title: "Arms Day",
-        exerecises: [
-          "Barbell Curl",
-          "Hammer Curl",
-          "Tricep Pushdown",
-          "Skull Crusher",
-          "Concentration Curl",
-        ],
-        icon: "./images/Arms.png",
-      },
-    ];
-
-    // تابع بولد کردن آیکون حرکت روز در کارت دراپ شده روز مدنظر
     function boldTask(item) {
-      if (item.classList.contains("different")) {
-        return;
-      }
-
+      if (item.classList.contains("different")) return;
       const activeItem = document.querySelector(".different");
-
-      if (activeItem) {
-        activeItem.classList.remove("different");
-      }
-
+      if (activeItem) activeItem.classList.remove("different");
       item.classList.add("different");
     }
 
-    // ========= پایان تابع بولد ===========
-
-    // برای انتخاب تسک مورد نظر کلیک شده
     let selectedTask = null;
-
     tasks.forEach((task) => {
       task.addEventListener("dragstart", () => {
         selectedTask = task;
       });
     });
-    // ========  پایان ===========
-
-    // برای نمایش دادن لیست حرکات ورزشی از آرایه حرکات زمانی که روی لیست تسک ها در منو کلیک میشود
 
     tasks.forEach((task) => {
       task.addEventListener("click", () => {
         workoutCard.classList.remove("hide");
         const workoutId = task.dataset.workout;
-        //  console.log(workoutId);
-
-        const selectedWorkout = workouts.find(
-          (workout) => workout.id === workoutId,
-        );
-
+        const selectedWorkout = workouts.find((workout) => workout.id === workoutId);
         if (!selectedWorkout) return;
-        workoutCard.innerHTML = ` <div class="workout-header"> 
-                    <i class="bi bi-check-circle check"></i>
-                    <h3 style="color :white;">${workoutId}</h3>
-                    <i class="bi bi-x-circle close"></i>
-                </div>`;
+
+        workoutCard.innerHTML = `<div class="workout-header"> 
+          <i class="bi bi-check-circle check"></i>
+          <h3 style="color:white;">${workoutId}</h3>
+          <i class="bi bi-x-circle close"></i>
+        </div>`;
+
         const workoutList = document.createElement("ul");
         workoutList.classList.add("workout-items");
         selectedWorkout.exerecises.forEach((exercise) => {
           const li = document.createElement("li");
           li.classList.add("wt-item");
           li.innerHTML = `<span class="item-num">1</span>
-                        <h3 class="item-text">${exercise}</h3>
-                            <img class="wt-icon" src="./images/leg.png" alt="">`;
+            <h3 class="item-text">${exercise}</h3>
+            <img class="wt-icon" src="./images/leg.png" alt="">`;
           workoutList.appendChild(li);
         });
         workoutCard.append(workoutList);
@@ -208,69 +165,119 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    //  ============== پایان  ===============
+    // ─── خوندن از localStorage و اعمال روی روزها ───
+    dayDivs.forEach((dayDiv) => {
+      // فقط روزهای ماه جاری (نه fade)
+      if (dayDiv.classList.contains("fade")) return;
 
-    // برای ایجاد پیمایش روی هر یک از روز های تقویم
-    let activeDayBox = []; // آرایه‌ای که همیشه فقط یه عضو داره
+      const dayNumber = dayDiv.textContent.trim();
+      const savedId = getSavedDay(date, dayNumber);
+
+      if (savedId) {
+        const savedWorkout = workouts.find((item) => item.id === savedId);
+        if (savedWorkout) {
+          dayDiv.innerHTML += `<img src="${savedWorkout.icon}">`;
+          dayDiv.style.backgroundColor = "#ff8c00";
+          dayDiv.style.border = "1px dashed white";
+          dayDiv.style.color = "white";
+        }
+      }
+    });
+    // ───────────────────────────────────────────────
+
+    let activeDayBox = [];
 
     dayDivs.forEach((dayDiv) => {
       dayDiv.addEventListener("click", () => {
-        // آرایه رو خالی کن و فقط روز جدید رو بذار توش
         activeDayBox = [];
-        activeDayBox.push(dayDiv);        
+        activeDayBox.push(dayDiv);
 
         droppedCard.classList.remove("hide");
         let dayNumber = document.getElementById("card-day");
         dayNumber.innerHTML = `${months[currentDate.getMonth()]} , Day ${dayDiv.textContent}`;
 
         const droppedCardTasks = droppedCard.querySelectorAll(".tsk-item");
+
+        // پاک کردن listener های قدیمی
         droppedCardTasks.forEach((task) => {
+          const newTask = task.cloneNode(true);
+          task.parentNode.replaceChild(newTask, task);
+        });
+
+        const freshTasks = droppedCard.querySelectorAll(".tsk-item");
+        freshTasks.forEach((task) => {
           task.addEventListener("click", (e) => {
-            console.log(task);
-
             e.preventDefault();
-
             boldTask(task);
 
             const workoutId = task.dataset.workout;
-            const selectedWorkout = workouts.find(
-              (item) => item.id === workoutId,
-            );
-
+            const selectedWorkout = workouts.find((item) => item.id === workoutId);
             const currentImg = activeDayBox[0].querySelector("img");
+            const currentDayNumber = activeDayBox[0].textContent.trim();
 
             if (currentImg) {
-              // اگر همون آیکون رو دوباره انتخاب کرد، پاکش کن (toggle)
               if (currentImg.src.includes(selectedWorkout.icon)) {
-                activeDayBox[0].innerHTML = activeDayBox[0].textContent;
+                // toggle: همون آیکون رو دوباره زد، پاک کن
+                activeDayBox[0].innerHTML = currentDayNumber;
                 activeDayBox[0].style.backgroundColor = "transparent";
+                activeDayBox[0].style.border = "";
+                activeDayBox[0].style.color = "";
+                removeDay(currentDayNumber); // ─── حذف از localStorage
                 return;
               }
-              // وگرنه img قدیمی رو پاک کن
               currentImg.remove();
             }
 
             activeDayBox[0].innerHTML += `<img src="${selectedWorkout.icon}">`;
-            activeDayBox[0].classList.add("day-div");
             activeDayBox[0].style.backgroundColor = "#ff8c00";
             activeDayBox[0].style.border = "1px dashed white";
             activeDayBox[0].style.color = "white";
+            saveDay(currentDayNumber, selectedWorkout.id); // ─── ذخیره توی localStorage
 
             const cleanBtn = document.querySelector(".clean-btn");
-
-            cleanBtn.addEventListener("click", () => {
+            cleanBtn.onclick = () => {
               task.classList.remove("different");
-              activeDayBox[0].innerHTML = activeDayBox[0].textContent; // ✅ روز فعال
+              const dn = activeDayBox[0].textContent.trim();
+              activeDayBox[0].innerHTML = dn;
               activeDayBox[0].style.backgroundColor = "transparent";
-            });
+              activeDayBox[0].style.border = "";
+              activeDayBox[0].style.color = "";
+              removeDay(dn); // ─── حذف از localStorage
+            };
           });
         });
 
         closeCard();
       });
+
+      dayDiv.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dayDiv.style.backgroundColor = "red";
+        dayDiv.style.color = "white";
+        e.dataTransfer.dropEffect = "move";
+        dayDiv.addEventListener("dragleave", () => {
+          dayDiv.style.backgroundColor = "";
+          dayDiv.style.color = "";
+          dayDiv.style.transition = "0.3s ease";
+        });
+      });
+
+      dayDiv.addEventListener("drop", (e) => {
+        e.preventDefault();
+        if (dayDiv.querySelector("img")) return;
+        const workoutId = selectedTask.dataset.workout;
+        const selectedWorkout = workouts.find((item) => item.id === workoutId);
+        if (selectedWorkout) {
+          dayDiv.innerHTML += `<img src="${selectedWorkout.icon}">`;
+          dayDiv.classList.add("day-div");
+          dayDiv.style.backgroundColor = "#ff8c00";
+          dayDiv.style.border = "1px dashed white";
+          dayDiv.style.color = "white";
+          saveDay(dayDiv.textContent.trim(), selectedWorkout.id); // ─── ذخیره drag & drop
+        }
+      });
     });
 
-    // ============  پایان پیمایش روی روز های تقویم ================
     closeCard();
   }
 
