@@ -3,8 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const daysContainer = document.querySelector(".days");
 
   const months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   let currentDate = new Date();
@@ -15,25 +25,49 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: "leg",
       title: "Leg Day",
-      exerecises: ["Barbell Squat", "Romanian Deadlift", "Leg Press", "Walking Lunges", "Leg Extension"],
+      exerecises: [
+        "Barbell Squat",
+        "Romanian Deadlift",
+        "Leg Press",
+        "Walking Lunges",
+        "Leg Extension",
+      ],
       icon: "./images/leg.png",
     },
     {
       id: "chest",
       title: "Chest Day",
-      exerecises: ["Barbell Bench Press", "Incline Dumbbell Press", "Chest Fly", "Push-Up", "Cable Crossover"],
+      exerecises: [
+        "Barbell Bench Press",
+        "Incline Dumbbell Press",
+        "Chest Fly",
+        "Push-Up",
+        "Cable Crossover",
+      ],
       icon: "./images/chest.png",
     },
     {
       id: "shoulder",
       title: "Shoulder Day",
-      exerecises: ["Overhead Press", "Dumbbell Lateral Raise", "Front Raise", "Rear Delt Fly", "Arnold Press"],
+      exerecises: [
+        "Overhead Press",
+        "Dumbbell Lateral Raise",
+        "Front Raise",
+        "Rear Delt Fly",
+        "Arnold Press",
+      ],
       icon: "./images/shoulder.jpg",
     },
     {
       id: "arm",
       title: "Arms Day",
-      exerecises: ["Barbell Curl", "Hammer Curl", "Tricep Pushdown", "Skull Crusher", "Concentration Curl"],
+      exerecises: [
+        "Barbell Curl",
+        "Hammer Curl",
+        "Tricep Pushdown",
+        "Skull Crusher",
+        "Concentration Curl",
+      ],
       icon: "./images/Arms.png",
     },
   ];
@@ -63,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ──────────────────────────────────
 
   function renderCalendar(date) {
-
     function closeCard() {
       const checkBtns = document.querySelectorAll(".check");
       const closeBtns = document.querySelectorAll(".close");
@@ -103,7 +136,11 @@ document.addEventListener("DOMContentLoaded", () => {
       dayDiv.textContent = i;
       dayDiv.classList.add("day-div");
 
-      if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+      if (
+        i === today.getDate() &&
+        month === today.getMonth() &&
+        year === today.getFullYear()
+      ) {
         dayDiv.classList.add("today", "day-div");
       }
 
@@ -122,6 +159,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const droppedCard = document.querySelector(".dropped-card");
     const workoutCard = document.querySelector(".workout-card");
     const tasks = document.querySelectorAll(".tsk-container .tsk-item");
+    const gridTasks = document.querySelector('.tasks')
+    const showTskBtn = document.querySelector('.show-tasks')
+
+    showTskBtn.addEventListener('click' , () => {
+      if(gridTasks.classList.contains('show')) {
+        showTskBtn.textContent = 'Show list'
+      } else {
+        showTskBtn.textContent = 'close!'
+      }
+      gridTasks.classList.toggle('show')
+      
+    })
 
     function boldTask(item) {
       if (item.classList.contains("different")) return;
@@ -141,7 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
       task.addEventListener("click", () => {
         workoutCard.classList.remove("hide");
         const workoutId = task.dataset.workout;
-        const selectedWorkout = workouts.find((workout) => workout.id === workoutId);
+        const selectedWorkout = workouts.find(
+          (workout) => workout.id === workoutId,
+        );
         if (!selectedWorkout) return;
 
         workoutCard.innerHTML = `<div class="workout-header"> 
@@ -155,9 +206,9 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedWorkout.exerecises.forEach((exercise) => {
           const li = document.createElement("li");
           li.classList.add("wt-item");
-          li.innerHTML = `<span class="item-num">1</span>
-            <h3 class="item-text">${exercise}</h3>
-            <img class="wt-icon" src="./images/leg.png" alt="">`;
+          li.innerHTML = ` <h3 class="item-text">${exercise}</h3>
+            <div><img class="wt-icon" src="${selectedWorkout.icon}" alt=""></div>`;
+            
           workoutList.appendChild(li);
         });
         workoutCard.append(workoutList);
@@ -211,7 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
             boldTask(task);
 
             const workoutId = task.dataset.workout;
-            const selectedWorkout = workouts.find((item) => item.id === workoutId);
+            const selectedWorkout = workouts.find(
+              (item) => item.id === workoutId,
+            );
             const currentImg = activeDayBox[0].querySelector("img");
             const currentDayNumber = activeDayBox[0].textContent.trim();
 
