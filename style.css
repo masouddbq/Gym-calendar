@@ -705,9 +705,10 @@ i {
     }
 
     .workout-header{
-        width: 80%;
+        width: 85%;
         position: absolute;
         top: 20px;
+        font-size: 24px;
     }
 
     .workout-items{
