@@ -632,7 +632,7 @@ i {
     .tasks {
         display: none;
         position: absolute;
-        width: 70vw;
+        width: 80vw;
         background: linear-gradient(90deg, #363636, rgba(30, 30, 30, 0.824));
         height: 30vh;
         transform: translateY(-220px);
@@ -655,7 +655,7 @@ i {
     }
 
     .tsk-container {
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -683,10 +683,9 @@ i {
     }
 
     .tsk-item span {
-        transform: translateX(-10px)
+        transform: translateX(-10px);
+        font-size: 12px
     }
-
-    ;
 
     .wt-icon {
         width: 30px;
