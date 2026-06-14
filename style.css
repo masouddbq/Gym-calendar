@@ -346,7 +346,7 @@ i {
     padding: 0 10px;
     margin: 10px 0;
     background: linear-gradient(90deg, #ff8c0078, #ffae00aa);
-    box-shadow: 0 0 5px 1px #ff8c00;
+    /* box-shadow: 0 0 5px 1px #ff8c00; */
     corner-shape: squircle;
     border-radius: 100px;
 }
@@ -583,7 +583,8 @@ i {
         margin-right: 6px;
         font-weight: 300;
     }
-    hr{
+
+    hr {
         opacity: 0.2;
         background-color: #ffae00;
     }
@@ -594,7 +595,7 @@ i {
         flex-direction: column;
         padding: 20px 10px;
         height: 80vh;
-        background: linear-gradient( #00000072 , #1e1a1a9a);
+        background: linear-gradient(#00000072, #1e1a1a9a);
     }
 
     .base-heading {
@@ -615,17 +616,18 @@ i {
         display: flex;
         justify-content: center;
         margin: 10px 0;
-        
+
     }
-    
+
     .info-title,
     .info-text {
         width: 100%;
         display: flex;
         justify-content: space-evenly;
     }
-    
-    .info-title h3 , .info-text h3 {
+
+    .info-title h3,
+    .info-text h3 {
         font-weight: 0;
     }
 
@@ -638,14 +640,14 @@ i {
         width: 100%;
     }
 
-    
+
 
     .container {
         display: flex;
         flex-direction: column;
     }
 
-    .calendar::before{
+    .calendar::before {
         content: "";
         position: absolute;
         inset: 0;
@@ -653,13 +655,13 @@ i {
         /* ضخامت بوردر */
         border-radius: 10px;
         background: linear-gradient(135deg, #d0570072, #6464648a, #ff6a0093);
-    
+
         -webkit-mask:
             linear-gradient(#121212 0 0) content-box,
             linear-gradient(#171616 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
-    
+
         pointer-events: none;
     }
 
@@ -672,8 +674,8 @@ i {
         box-shadow: none;
     }
 
-    .week-days{
-        background:rgba(255, 255, 255, 0.086);
+    .week-days {
+        background: rgba(255, 255, 255, 0.086);
         border-radius: 10px;
     }
 
@@ -693,8 +695,9 @@ i {
         position: absolute;
         width: 80vw;
         background: transparent;
-        height: 10vh;
-        transform: translateY(-190px);
+        height: 0vh;
+        transform: translateY(-220px);
+        box-shadow: none;
         border-radius: 50px;
         transition: 0.3s ease;
     }
@@ -707,7 +710,7 @@ i {
         background-color: #ff8c00;
         color: white;
         width: 90%;
-    } 
+    }
 
     .show {
         display: flex;
@@ -744,60 +747,62 @@ i {
         margin: 0 3px;
     }
 
-    .tsk-item span{
+    .tsk-item span {
         font-weight: 100;
     }
 
     .workout-card {
+        corner-shape: squircle;
+        border-radius: 20%;
+        border: none;
+        height: 280px;
+        padding: 0;
+        width: 90%;
+        bottom: 70px;
         transform: translateX(0px);
-        position: absolute;
-        bottom: 10%;
-        width: 90vw;
-        height: 60%;
-        border-radius: 30px;
-        mix-blend-mode: multiply;
+        background: transparent;
+        box-shadow: none;
     }
 
     .workout-header {
-        width: 85%;
-        position: absolute;
-        top: 20px;
-        font-size: 24px;
+        display: none;
     }
 
     .workout-items {
         width: 100%;
-        height: 80%;
+        height: 90%;
         position: absolute;
-        top: 50px;
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 1fr 1fr 1fr;
-        column-gap: 20px;
-        padding: 20px;
+        top: 0px;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
         border-radius: 50px;
     }
 
     .wt-item {
-        width: 140px;
+        width: 100%;
         border-radius: 50px;
-        height: 60px;
+        height: 50px;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        background-color: #ffae0027;
+
     }
 
     .wt-item .item-text {
         width: 80%;
-        font-size: 12px;
+        font-size: 16px;
         /* margin: 10px; */
     }
 
     .wt-item .wt-icon {
-        width: 70%;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         transform: translateX(-10px);
-        mix-blend-mode: multiply;
+        mix-blend-mode: color-burn;
     }
 
 

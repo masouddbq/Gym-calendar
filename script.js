@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dayDivs = document.querySelectorAll(".day-div");
     const droppedCard = document.querySelector(".dropped-card");
     const workoutCard = document.querySelector(".workout-card");
+    const workoutCardHeader = document.querySelector(".workout-header");
     const tasks = document.querySelectorAll(".tsk-container .tsk-item");
     const taskMainTitle = document.querySelector('.tsk-title')
     const tasksImg = document.querySelectorAll('.tsk-item img')
@@ -165,20 +166,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const showTskBtn = document.querySelector('.show-tasks')
     const mainPage = document.querySelector('.calendar')
 
-    showTskBtn.addEventListener('click' , () => {
+
+    function showWorkouts() {
       mainPage.classList.toggle('hide')
-      if(mainPage.classList.contains('hide') && window.innerWidth < 568) {
+      if(mainPage.classList.contains('hide') && window.innerWidth < 568 ) {
         showTskBtn.textContent = 'Back to plan'
         taskMainTitle.innerHTML = ''
         gridTasks.classList.toggle('show');
+  
+        
+        
         tasksImg.forEach((image) => {
           image.remove()
         })
       }else{
         showTskBtn.textContent = 'Workouts'
         gridTasks.classList.remove('show')
+        workoutCard.classList.add('hide')
       }
-    })
+    }
+
+    showTskBtn.addEventListener('click' , showWorkouts)
 
     function boldTask(item) {
       if (item.classList.contains("different")) return;
@@ -202,6 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
           (workout) => workout.id === workoutId,
         );
         if (!selectedWorkout) return;
+
+        
 
         workoutCard.innerHTML = `<div class="workout-header"> 
           <i class="bi bi-check-circle check"></i>
