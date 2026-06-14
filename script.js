@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     showTskBtn.addEventListener('click' , () => {
       mainPage.classList.toggle('hide')
-      if(mainPage.classList.contains('hide')) {
+      if(mainPage.classList.contains('hide') && window.innerWidth < 568) {
         showTskBtn.textContent = 'Back to plan'
         taskMainTitle.innerHTML = ''
         gridTasks.classList.toggle('show');
