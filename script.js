@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         workoutCard.innerHTML = `<div class="workout-header"> 
           <i class="bi bi-check-circle check"></i>
-          <h3 style="color:white;">${workoutId}</h3>
+          <h3 style="color:white;">${String(workoutId).toUpperCase()}</h3>
           <i class="bi bi-x-circle close"></i>
         </div>`;
 

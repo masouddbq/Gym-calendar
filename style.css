@@ -37,7 +37,7 @@ i {
     border-radius: 50px;
 
     background:
-        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        linear-gradient(rgba(255, 162, 0, 0.105), rgba(0, 0, 0, 0.516)),
         url("./images/—Pngtree—stunning\ view\ of\ a\ contemporary_3760108.jpg") center/cover no-repeat;
 }
 
@@ -581,14 +581,20 @@ i {
     h3 {
         font-size: 14px;
         margin-right: 6px;
+        font-weight: 300;
+    }
+    hr{
+        opacity: 0.2;
+        background-color: #ffae00;
     }
 
     .base {
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        padding: 30px 10px;
+        padding: 20px 10px;
         height: 80vh;
+        background: linear-gradient( #00000072 , #1e1a1a9a);
     }
 
     .base-heading {
@@ -598,29 +604,79 @@ i {
         width: 80vw;
     }
 
+    .head-title p {
+        margin: 2px 0;
+    }
+
+
     .head-infos {
         text-align: center;
         width: 80vw;
         display: flex;
         justify-content: center;
-        margin: 20px 0;
+        margin: 10px 0;
+        
     }
-
+    
     .info-title,
     .info-text {
         width: 100%;
         display: flex;
         justify-content: space-evenly;
     }
+    
+    .info-title h3 , .info-text h3 {
+        font-weight: 0;
+    }
 
     .month-year {
-        font-size: 24px;
+        font-size: 20px;
+        width: 100px;
     }
+
+    .header {
+        width: 100%;
+    }
+
+    
 
     .container {
         display: flex;
         flex-direction: column;
     }
+
+    .calendar::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        /* ضخامت بوردر */
+        border-radius: 10px;
+        background: linear-gradient(135deg, #d0570072, #6464648a, #ff6a0093);
+    
+        -webkit-mask:
+            linear-gradient(#121212 0 0) content-box,
+            linear-gradient(#171616 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    
+        pointer-events: none;
+    }
+
+    .calendar {
+        width: 80vw;
+        height: 50vh;
+        transform: translateY(-15px);
+        overflow: hidden;
+        backdrop-filter: blur(1px);
+        box-shadow: none;
+    }
+
+    .week-days{
+        background:rgba(255, 255, 255, 0.086);
+        border-radius: 10px;
+    }
+
 
     @keyframes show {
         0% {
@@ -639,11 +695,11 @@ i {
         background: linear-gradient(90deg, #363636, rgba(30, 30, 30, 0.824));
         height: 30vh;
         transform: translateY(-240px);
+        border-radius: 50px;
     }
 
     .show-tasks {
         display: block;
-        margin-top: 10px;
         border: none;
         border-radius: 10px;
         padding: 10px;
@@ -658,7 +714,7 @@ i {
     }
 
     .tsk-container {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -672,6 +728,7 @@ i {
         place-items: center;
         width: 100%;
         padding: 10px;
+        border-radius: 30px;
         margin: 10px 0;
         height: 100%;
     }
@@ -702,52 +759,49 @@ i {
         bottom: 10%;
         width: 90vw;
         height: 60%;
+        border-radius: 30px;
     }
 
-    .workout-header{
+    .workout-header {
         width: 85%;
         position: absolute;
         top: 20px;
         font-size: 24px;
     }
 
-    .workout-items{
-        width: 90%;
+    .workout-items {
+        width: 100%;
         height: 80%;
         position: absolute;
         top: 50px;
         display: grid;
         grid-template-columns: 50% 50%;
         grid-template-rows: 1fr 1fr 1fr;
-        column-gap: 10px;
+        column-gap: 20px;
         padding: 20px;
+        border-radius: 50px;
     }
 
-    .wt-item{
+    .wt-item {
         width: 140px;
         border-radius: 50px;
         height: 60px;
         display: flex;
         justify-content: space-evenly;
+        align-items: center;
     }
 
-    .wt-item .item-text{
+    .wt-item .item-text {
         width: 80%;
         font-size: 12px;
-        margin: 10px;
+        /* margin: 10px; */
     }
 
-    .wt-item .wt-icon{
+    .wt-item .wt-icon {
         width: 70%;
         height: 40px;
         transform: translateX(-10px);
         mix-blend-mode: multiply;
-    }
-
-    .calendar {
-        width: 80vw;
-        height: 45vh;
-        overflow: hidden;
     }
 
 
