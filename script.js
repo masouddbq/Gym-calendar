@@ -159,17 +159,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const droppedCard = document.querySelector(".dropped-card");
     const workoutCard = document.querySelector(".workout-card");
     const tasks = document.querySelectorAll(".tsk-container .tsk-item");
+    const taskMainTitle = document.querySelector('.tsk-title')
+    const tasksImg = document.querySelectorAll('.tsk-item img')
     const gridTasks = document.querySelector('.tasks')
     const showTskBtn = document.querySelector('.show-tasks')
+    const mainPage = document.querySelector('.calendar')
 
     showTskBtn.addEventListener('click' , () => {
-      if(gridTasks.classList.contains('show')) {
-        showTskBtn.textContent = 'Show list'
-      } else {
-        showTskBtn.textContent = 'close!'
+      mainPage.classList.toggle('hide')
+      if(mainPage.classList.contains('hide')) {
+        showTskBtn.textContent = 'Back to plan'
+        taskMainTitle.innerHTML = ''
+        gridTasks.classList.toggle('show');
+        tasksImg.forEach((image) => {
+          image.remove()
+        })
+      }else{
+        showTskBtn.textContent = 'Workouts'
+        gridTasks.classList.remove('show')
       }
-      gridTasks.classList.toggle('show')
-      
     })
 
     function boldTask(item) {
