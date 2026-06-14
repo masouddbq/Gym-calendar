@@ -755,10 +755,10 @@ i {
         corner-shape: squircle;
         border-radius: 20%;
         border: none;
-        height: 280px;
+        height: 50vh;
         padding: 0;
         width: 90%;
-        bottom: 50%;
+        bottom: 50px;
         transform: translateX(0px);
         background: transparent;
         box-shadow: none;
