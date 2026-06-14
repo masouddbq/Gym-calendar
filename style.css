@@ -710,6 +710,7 @@ i {
         background-color: #ff8c00;
         color: white;
         width: 90%;
+        z-index: 99;
     }
 
     .show {
