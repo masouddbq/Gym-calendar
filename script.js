@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const workoutCardHeader = document.querySelector(".workout-header");
     const tasks = document.querySelectorAll(".tsk-container .tsk-item");
     const taskMainTitle = document.querySelector('.tsk-title')
-    const tasksImg = document.querySelectorAll('.tsk-item img')
+    const tasksImg = document.querySelectorAll('.tsk-container .tsk-list .tsk-item img')
     const gridTasks = document.querySelector('.tasks')
     const showTskBtn = document.querySelector('.show-tasks')
     const mainPage = document.querySelector('.calendar')
@@ -173,9 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showTskBtn.textContent = 'Back to plan'
         taskMainTitle.innerHTML = ''
         gridTasks.classList.toggle('show');
-  
-        
-        
         tasksImg.forEach((image) => {
           image.remove()
         })
